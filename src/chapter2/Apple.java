@@ -1,6 +1,6 @@
-package chap2;
+package chapter2;
 
-import chap2.attempt1.Color;
+import chapter2.attempt1.Color;
 
 public class Apple implements Comparable<Apple>{
 

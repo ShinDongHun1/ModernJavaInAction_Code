@@ -1,4 +1,4 @@
-package chap2.attempt7;
+package chapter2.attempt7;
 
 public class Attempt7 {
 

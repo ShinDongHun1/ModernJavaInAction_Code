@@ -1,12 +1,11 @@
-package chap2.attempt1;
+package chapter2.attempt1;
 
-import chap2.Apple;
-import chap2.attempt4.AppleGreenColorPredicate;
-import chap2.attempt4.AppleHeavyWeightPredicate;
-import chap2.attempt4.ApplePredicate;
+import chapter2.Apple;
+import chapter2.attempt4.AppleGreenColorPredicate;
+import chapter2.attempt4.AppleHeavyWeightPredicate;
+import chapter2.attempt4.ApplePredicate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -15,8 +14,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Predicate;
 
-import static chap2.attempt1.Color.GREEN;
-import static chap2.attempt1.Color.RED;
+import static chapter2.attempt1.Color.GREEN;
+import static chapter2.attempt1.Color.RED;
 
 public class First {
 

@@ -1,6 +1,6 @@
-package chap2.attempt4;
+package chapter2.attempt4;
 
-import chap2.Apple;
+import chapter2.Apple;
 
 public interface ApplePredicate {
     boolean test(Apple apple);

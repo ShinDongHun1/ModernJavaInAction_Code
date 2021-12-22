@@ -1,8 +1,8 @@
-package chap2.attempt4;
+package chapter2.attempt4;
 
-import chap2.Apple;
+import chapter2.Apple;
 
-import static chap2.attempt1.Color.GREEN;
+import static chapter2.attempt1.Color.GREEN;
 
 public class AppleGreenColorPredicate implements ApplePredicate{
     @Override
