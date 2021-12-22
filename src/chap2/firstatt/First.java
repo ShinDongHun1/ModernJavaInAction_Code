@@ -118,5 +118,9 @@ public class First {
         });
 
 
+        //== 여섯 번째 시도 람다 표현식 사용 ==//
+        filterApples(inventory, (Apple apple) -> RED.equals(apple.getColor()));
+
+
     }
 }
