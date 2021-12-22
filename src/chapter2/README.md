@@ -1,6 +1,4 @@
-# Modern Java In Action 
-
-## Chapter 2 : 동작 파라미터화
+# Chapter 2 : 동작 파라미터화
 ### 1. 첫 번째 시도 : 녹색 사과 필터링
   ![img_1.png](../image/img.png)
 
