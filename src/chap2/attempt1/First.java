@@ -1,4 +1,4 @@
-package chap2.firstatt;
+package chap2.attempt1;
 
 import chap2.Apple;
 import chap2.attempt4.AppleGreenColorPredicate;
@@ -6,10 +6,17 @@ import chap2.attempt4.AppleHeavyWeightPredicate;
 import chap2.attempt4.ApplePredicate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.function.Predicate;
 
-import static chap2.firstatt.Color.GREEN;
-import static chap2.firstatt.Color.RED;
+import static chap2.attempt1.Color.GREEN;
+import static chap2.attempt1.Color.RED;
 
 public class First {
 
@@ -74,6 +81,7 @@ public class First {
 
 
 
+    //== 네 번째 시도 -> 동작 파라미터화 ==//
     public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate applePredicate) {//전략 패턴
         ArrayList<Apple> result = new ArrayList<>();
 
@@ -84,7 +92,23 @@ public class First {
         }
         return result;
     }
-    //== 네 번째 시도 끝, 동적 파라미터화 ==//
+    //== 네 번째 시도 끝 ==//
+
+
+
+
+    //== 일곱 번째 시도 -> 리스트 형식으로 추상화 ==//
+    public static <T> List<T> filter(List<T> list, Predicate<T> p) {
+        ArrayList<T> result = new ArrayList<>();
+
+        for (T e : list) {
+            if(p.test(e)){
+                result.add(e);
+            }
+        }
+        return result;
+    }
+
 
 
 
@@ -120,6 +144,53 @@ public class First {
 
         //== 여섯 번째 시도 람다 표현식 사용 ==//
         filterApples(inventory, (Apple apple) -> RED.equals(apple.getColor()));
+
+
+        //== 일곱 번째 시도 -> 리스트 형식으로 추상화 사용 ==//
+        filter(inventory, (Apple apple) -> RED.equals(apple.getColor()));
+        ArrayList<Integer> numbers = new ArrayList<>();
+        filter(numbers, (Integer number) -> number % 2 == 0);
+
+
+
+
+        //== 실전 예제 1 - Comparator로 정렬하기 ==//
+
+        inventory.sort(new Comparator<Apple>() {
+            @Override
+            public int compare(Apple o1, Apple o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
+        inventory.sort((Apple o1, Apple o2) -> o1.compareTo(o2));
+
+
+        //== 실전 예제 2 - Runnable로 코드 블록 실행하기 ==//
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Modern Java In Action!!");
+            }
+        });
+
+        Thread t2 = new Thread(() -> System.out.println("Modern Java In Action"));
+
+
+        //== 실전 예제 3 - Callable을 결과로 반환하기 ==//
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> threadName = executorService.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return Thread.currentThread().getName();
+            }
+        });
+
+        Future<String> threadName2 = executorService.submit(() -> Thread.currentThread().getName());
+
+
+
+
 
 
     }

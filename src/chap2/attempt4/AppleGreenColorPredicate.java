@@ -2,7 +2,7 @@ package chap2.attempt4;
 
 import chap2.Apple;
 
-import static chap2.firstatt.Color.GREEN;
+import static chap2.attempt1.Color.GREEN;
 
 public class AppleGreenColorPredicate implements ApplePredicate{
     @Override

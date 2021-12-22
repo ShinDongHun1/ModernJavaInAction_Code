@@ -1,8 +1,8 @@
 package chap2;
 
-import chap2.firstatt.Color;
+import chap2.attempt1.Color;
 
-public class Apple {
+public class Apple implements Comparable<Apple>{
 
     private Color color;
 
@@ -14,5 +14,10 @@ public class Apple {
 
     public Color getColor() {
         return color;
+    }
+
+    @Override
+    public int compareTo(Apple apple) {
+        return this.weight-apple.getWeight();
     }
 }
