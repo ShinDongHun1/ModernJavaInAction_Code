@@ -107,6 +107,16 @@ public class First {
 
 
         //== 다섯 번째 시도 시작, 익명 클래스 사용 ==//
+        /**
+         * 너무 많은 공간을 차지
+         */
+        filterApples(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return RED.equals(apple.getColor());
+            }
+        });
+
 
     }
 }
