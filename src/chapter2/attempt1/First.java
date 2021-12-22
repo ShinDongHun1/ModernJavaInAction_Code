@@ -189,6 +189,10 @@ public class First {
 
 
 
+        inventory.sort(Comparator.comparing(Apple::getWeight));
+
+
+
 
 
 
