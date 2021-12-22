@@ -1,6 +1,9 @@
 package chap2.firstatt;
 
 import chap2.Apple;
+import chap2.attempt4.AppleGreenColorPredicate;
+import chap2.attempt4.AppleHeavyWeightPredicate;
+import chap2.attempt4.ApplePredicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,28 +74,6 @@ public class First {
 
 
 
-    //== 네 번째 시도 -> 동적 파라미터화 사용. ==//
-
-    /**
-     * 참 또는 거짓을 반환하는 함수를 프레디케이트라고 한다.
-     * 선택 조건을 정의하는 인터페이스를 정의하자.
-     */
-    public interface ApplePredicate{
-        boolean test(Apple apple);
-    }
-
-    public class AppleHeavyWeightPredicate implements ApplePredicate{
-        @Override
-        public boolean test(Apple apple) {
-            return apple.getWeight() > 150;
-        }
-    }
-    public class AppleGreenColorPredicate implements ApplePredicate{
-        @Override
-        public boolean test(Apple apple) {
-            return GREEN.equals(apple.getColor());
-        }
-    }
     public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate applePredicate) {//전략 패턴
         ArrayList<Apple> result = new ArrayList<>();
 
@@ -103,8 +84,9 @@ public class First {
         }
         return result;
     }
+    //== 네 번째 시도 끝, 동적 파라미터화 ==//
 
-    
+
 
 
 
@@ -117,6 +99,14 @@ public class First {
         //== 세 번째 시도 -> 정말 별로인 메서드 ==//
         filterApples(inventory, GREEN, 0, true);
         filterApples(inventory, null, 150, false);
+
+        //== 네 번째 시도 ==//
+        filterApples(inventory, new AppleGreenColorPredicate());
+        filterApples(inventory, new AppleHeavyWeightPredicate());
+
+
+
+        //== 다섯 번째 시도 시작, 익명 클래스 사용 ==//
 
     }
 }
