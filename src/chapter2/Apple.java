@@ -1,8 +1,6 @@
 package chapter2;
 
-import chapter2.attempt1.Color;
-
-public class Apple implements Comparable<Apple>{
+public class Apple{
 
     private Color color;
 
@@ -16,8 +14,4 @@ public class Apple implements Comparable<Apple>{
         return color;
     }
 
-    @Override
-    public int compareTo(Apple apple) {
-        return this.weight-apple.getWeight();
-    }
 }
