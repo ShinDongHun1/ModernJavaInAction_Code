@@ -25,4 +25,6 @@ public class LambdaCapturing {
         Runnable runnable = () -> System.out.println(staticInt++); //(정적 변수는 자유롭게 캡쳐 가능)가능
         Runnable runnable1 = () -> System.out.println(instanceInt++); //(인스턴스 변수는 자유롭게 캡쳐 가능)가능
     }
+
+
 }

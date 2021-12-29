@@ -1,12 +1,12 @@
 package chapter2;
 
-public class Apple{
+public class Apple implements Comparable<Apple>{
 
     private Color color;
 
-    private int weight;
+    private Integer weight;
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
@@ -14,4 +14,8 @@ public class Apple{
         return color;
     }
 
+    @Override
+    public int compareTo(Apple o) {
+        return weight - o.getWeight();
+    }
 }
