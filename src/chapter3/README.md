@@ -199,13 +199,13 @@ Consumer<String> c = s-> list.add(s);
 자유 지역 변수의 복사본을 제공한다. 따라서 복사본의 값이 바뀌지 않아야 하므로 지역 변수에는 한 번만 값을 할당해야 한다는 제약이 생긴 것이다.
 
 
-## [3.6 메서드 참조](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/methodreference/Example)
+## [3.6 메서드 참조](https://github.com/ShinDongHun1/ModernJavaInAction_Code/blob/main/src/chapter3/methodreference/Example.java)
 메서드 참조를 이용하면 기존의 메서드 정의를 재활용해서 람다처럼 전달할 수 있다. 때로는 람다 표현식보다 메서드 참조를 사용하는 것이 더 가독성이 좋으며 자연스러울 수 있다.
 다음은 메서드 참조와 새로운 자바8 API를 활용한 정렬 예제이다.
 <br/>
-다음은 기존 코드이다.
+다음은 기존 코드이다.<br/>
 ![img_1.png](./image/img_15.png)<br/><br/>
-다음은 메서드 참조의 java.util.Comparator.comparing을 활용한 코드이다
+다음은 메서드 참조의 java.util.Comparator.comparing을 활용한 코드이다<br/>
 ![img_1.png](./image/img_16.png)<br/><br/>
 
 ### 3.6.1 요약
@@ -234,18 +234,18 @@ Consumer<String> c = s-> list.add(s);
 <br/><br/>
 <br/><br/>
 
-### [3.6.2 생성자 참조](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/methodreference/ConstructorReference)
+### [3.6.2 생성자 참조](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/methodreference/ConstructorReference.java)
 ClassName::new 처럼 클래스명과 new 키워드를 이용해서 기존 생성자의 참조를 만들 수 있다.
 이것은 정적 메서드의 참조를 만드는 방법과 비슷하다.
 예를 들어 인수가 없는 생성자, 즉 Supplier의 () -> Apple과 같은 시그니처를 갖는 생성자가 있다고 가정하자.
-코드를 통해 설명하겠다. 주석을 참고하자
+코드를 통해 설명하겠다. 주석을 참고하자<br/>
 ![img_1.png](./image/img_18.png)<br/><br/>
 ![img_1.png](./image/img_19.png)<br/><br/>
 <br/><br/>
 
 ## [3.7 람다, 메서드 참조 활용하기](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/methodreference)
 이제 처음으로 돌아가서, 사과 리스트를 다양한 정렬 기법으로 정렬하는 코드를 만드는 과정을 보여주면서 3장을 마무리하겠다.
-최종 목표는 다음과 같은 코드를 만드는 것이다. 이제 시작하자.
+최종 목표는 다음과 같은 코드를 만드는 것이다. <br/>
 ![img_1.png](./image/img_16.png)<br/><br/>
 
 ## 3.7.1, 1단계 : 코드 전달하기
@@ -257,10 +257,10 @@ ClassName::new 처럼 클래스명과 new 키워드를 이용해서 기존 생�
 ## 3.7.3, 3단계 : 람다 표현식 사용
 ![img_1.png](./image/img_22.png)<br/><br/>
 이 코드의 가독성을 좀 더 좋게 향상시킬 수 없을까? Comparator는 Comparable 키를 추출해서
-Comparator 객체로 만드는 Function 함수를 인수로 받는 정적 메서드 comparing을 포함한다.
+Comparator 객체로 만드는 Function 함수를 인수로 받는 정적 메서드 comparing을 포함한다.<br/>
 ![img_1.png](./image/img_23.png)
 (위와 같이 Function 함수를 갖는다)<br/><br/>
-다음처럼 comparing 메서드를 사용할 수 있다.
+다음처럼 comparing 메서드를 사용할 수 있다.<br/>
 ![img_1.png](./image/img_24.png)
 따라서 위를 사용하여 코드를 다음과 같이 간소화 할 수 있다.<br/>
 ![img_1.png](./image/img_25.png)<br/><br/>
@@ -320,9 +320,9 @@ f와 g를 조립해서 숫자를 증가시킨 뒤 결과에 2를 곱하는 함�
 f(x) = x + 10<br/>
 이를 적분하는 코드를 작성해보자(예시를 위해 x=3~ x=7까지 범위를 적분하는 코드를 작성하겠다)<br/>
 우선은 함수 f와 한계값(3과 7)을 인수로 받는 integrate라는 함수를 만들어야 한다.
-즉 다음처럼 함수 f를 인수로 받는 함수를 자바로 구현할 수 있다.
+즉 다음처럼 함수 f를 인수로 받는 함수를 자바로 구현할 수 있다.<br/>
 ![img_1.png](./image/img_31.png)<br/><br/>
-그러나 다음처럼 간단히 구현할 수는 없다.
+그러나 다음처럼 간단히 구현할 수는 없다.<br/>
 ![img_1.png](./image/img_32.png)<br/><br/>
 우선 이 식에서 x의 범위가 불분명하며, f를 전달하는 것이 아니라 x+10이라는 값을 전달하게 되기 때문에 잘못된 식이다.
 수학에서 dx의 정체는 'x를 인수로 받아 x+10의 결과를 만드는 함수'로 정리할 수 있다.<br/><br/>
