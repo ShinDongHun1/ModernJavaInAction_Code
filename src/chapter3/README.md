@@ -330,9 +330,9 @@ f(x) = x + 10<br/>
 ## 3.9.2 자바 8 람다로 연결
 이전에 언급했듯이 자바 8에서는 (double x) -> x + 10 같은 람다 표현식을 사용할 수 있다.
 따라서 함수 f를 다음처럼 구현할 수 있다.<br/>
-integration((double x) -> x + 10, 3, 7)<br/>
+<span style="color:orange">integration((double x) -> x + 10, 3, 7)</span><br/><br/>
 또는 다음처럼 구현할 수 있다<br/>
-integration((double x) -> f(x), 3, 7)<br/>
+<span style="color:orange">integration((double x) -> f(x), 3, 7)</span><br/><br/>
 이제 integrate 메서드를 어떻게 구현할지 궁금할 것이다.
 ![img_1.png](./image/img_33.png)<br/><br/>
 위는 틀린 코드이다. 람다 표현식은 함수형 인터페이스를 기대하는 콘텍스트에서만 사용할 수 있으므로 다음처럼 구현해야 한다.

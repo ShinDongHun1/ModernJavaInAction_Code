@@ -6,7 +6,7 @@ public class Integrate {
 
     public static void main(String[] args) {
 
-        integrate(f, 3, 7);
+        integrate((double x)-> x+10 , 3, 7);
 
 
     }
