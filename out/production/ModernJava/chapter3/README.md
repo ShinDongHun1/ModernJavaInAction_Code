@@ -85,7 +85,7 @@ IOException을 던질 수 있는 시그니처와 일치하는 함수형 인터�
 
 
 
-## [3.4. 함수형 인터페이스 사용](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/userfunctionalinterface)
+## [3.4. 함수형 인터페이스 사용](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/usefunctionalinterface)
 <br/>
 
 ## 1. Predicate 
@@ -199,13 +199,13 @@ Consumer<String> c = s-> list.add(s);
 자유 지역 변수의 복사본을 제공한다. 따라서 복사본의 값이 바뀌지 않아야 하므로 지역 변수에는 한 번만 값을 할당해야 한다는 제약이 생긴 것이다.
 
 
-## 3.6 메서드 참조
+## [3.6 메서드 참조](https://github.com/ShinDongHun1/ModernJavaInAction_Code/blob/main/src/chapter3/methodreference/Example.java)
 메서드 참조를 이용하면 기존의 메서드 정의를 재활용해서 람다처럼 전달할 수 있다. 때로는 람다 표현식보다 메서드 참조를 사용하는 것이 더 가독성이 좋으며 자연스러울 수 있다.
 다음은 메서드 참조와 새로운 자바8 API를 활용한 정렬 예제이다.
 <br/>
-다음은 기존 코드이다.
+다음은 기존 코드이다.<br/>
 ![img_1.png](./image/img_15.png)<br/><br/>
-다음은 메서드 참조의 java.util.Comparator.comparing을 활용한 코드이다
+다음은 메서드 참조의 java.util.Comparator.comparing을 활용한 코드이다<br/>
 ![img_1.png](./image/img_16.png)<br/><br/>
 
 ### 3.6.1 요약
@@ -217,3 +217,138 @@ Consumer<String> c = s-> list.add(s);
 예를 들어 Apple.getWeight는 Apple 클래스에 정의된 getWeight의 메서드 참조다. 실제로 메서드를 호출하는 것은 아니므로 괄호는 필요 없음을 기억하자.
 결과적으로 메서드 참조는 람다 표현식 (Apple a) -> a.getWeight()를 축약한 것이다.
 아래는 자바8에서 사용 가능한 다양한 메서드 참조 예제이다.
+![img_1.png](./image/img_17.png)<br/><br/>
+
+### 메서드 참조를 만드는 방법
+3가지 유형이 있다.
+
+### 1. 정적(static) 메서드 참조
+예를 들어 Integer의 parseInt 메서드는 Integer::parseInt로 표현할 수 있다.
+<br/><br/>
+### 2. 다양한 형식의 인스턴스 메서드 참조
+예를 들어 스트링의 length 메서드는 String::length로 표현할 수 있다.
+<br/><br/>
+### 3. 기존 객체의 인스턴스 메서드 참조
+예를 들어 Transaction 객체를 할당받은 expensiveTransaction 지역 변수가 있고, Transaction 객체에는 getValue 메서드가 있다면,
+이를 expensiveTransaction::getValue라고 표현할 수 있다.
+<br/><br/>
+<br/><br/>
+
+### [3.6.2 생성자 참조](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/methodreference/ConstructorReference.java)
+ClassName::new 처럼 클래스명과 new 키워드를 이용해서 기존 생성자의 참조를 만들 수 있다.
+이것은 정적 메서드의 참조를 만드는 방법과 비슷하다.
+예를 들어 인수가 없는 생성자, 즉 Supplier의 () -> Apple과 같은 시그니처를 갖는 생성자가 있다고 가정하자.
+코드를 통해 설명하겠다. 주석을 참고하자<br/>
+![img_1.png](./image/img_18.png)<br/><br/>
+![img_1.png](./image/img_19.png)<br/><br/>
+<br/><br/>
+
+## [3.7 람다, 메서드 참조 활용하기](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/methodreference)
+이제 처음으로 돌아가서, 사과 리스트를 다양한 정렬 기법으로 정렬하는 코드를 만드는 과정을 보여주면서 3장을 마무리하겠다.
+최종 목표는 다음과 같은 코드를 만드는 것이다. <br/>
+![img_1.png](./image/img_16.png)<br/><br/>
+
+## 3.7.1, 1단계 : 코드 전달하기
+![img_1.png](./image/img_20.png)<br/><br/>
+
+## 3.7.2, 2단계 : 익명 클래스 사용
+![img_1.png](./image/img_21.png)<br/><br/>
+
+## 3.7.3, 3단계 : 람다 표현식 사용
+![img_1.png](./image/img_22.png)<br/><br/>
+이 코드의 가독성을 좀 더 좋게 향상시킬 수 없을까? Comparator는 Comparable 키를 추출해서
+Comparator 객체로 만드는 Function 함수를 인수로 받는 정적 메서드 comparing을 포함한다.<br/>
+![img_1.png](./image/img_23.png)
+(위와 같이 Function 함수를 갖는다)<br/><br/>
+다음처럼 comparing 메서드를 사용할 수 있다.<br/>
+![img_1.png](./image/img_24.png)
+따라서 위를 사용하여 코드를 다음과 같이 간소화 할 수 있다.<br/>
+![img_1.png](./image/img_25.png)<br/><br/>
+
+## 3.7.4, 4단계 : 메서드 참조식 사용
+![img_1.png](./image/img_26.png)<br/><br/>
+완성이다. 코드가 짧아졌을 뿐더러 코드의 의미도 좀 더 명확하게 전달된다.
+<br/><br/>
+
+## [3.8 람다 표현식을 조합할 수 있는 유용한 메서드](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/usefulmethod)
+자바 8에서 제공하는 몇몇 함수형 인터페이스는 다양한 유틸리티 메서드를 표현한다.
+덕분에 우리는 여러개의 람다 표현식을 조합새허 복잡한 람다 표현식을 만들 수 있다.
+이것이 가능한 이유는 자바8에서 제공하는 함수형 인터페이스는 디폴트 메서드를 제공하기 때문이다.
+디폴트 메서드는 9장에서 자세히 설명한다. 우선 이 디폴트 메서드를 사용하여 람다 표현식을 조합해보자.
+<br/><br/>
+
+## 3.8.1 Comparator 조합
+![img_1.png](./image/img_24.png)<br/>
+위 사진에서 볼 수 있듯이, 정적 메서드 Comparator.comparing을 이용해서 비교에 사용할 키를 추출하는 Function 기반의 Comparator를 반환할 수 있다.
+이제 이를 이용하여 한번 다양한 코드를 작성해보자.
+
+### 역정렬
+사과의 무게를 내림차순으로 정렬하고 싶다면 어떻게 해야 할까?
+다른 Comparator 인스턴스를 만들 필요가 없다. 인터페이스 자체에서 주어진 비교자의 순서를 뒤바구는 reverse라는 디폴트 메서드를 제공하기 때문이다.
+따라서 다음과 같이 사용할 수 있다.
+![img_1.png](./image/img_27.png)<br/><br/>
+
+### Comparator 연결
+역정렬은 잘 동작한다. 하지만 무게가 같은 두 사과가 존재한다면 어덯게 할가?
+정렬된 리스트에서 어떤 사과를 먼저 나열해야 할까?
+이럴 땐 비교 결과를 더 다듬을 수 있는 두번째 Comparator를 만들 수 있다.
+예를 들어 무게로 두 사과를 비교한 다음 무게가 같다면 색깔별로 사과를 정렬할 수 있다.
+thenComparing 메서드로 두 번째 비교자를 만들 수 있다.
+thenComparing은 comparing 메서드처럼 함수를 인수로 받아 첫 번째 비교자를 이용해서 두 객체가 같다고 판단되면
+두 번째 비교자에 객체를 전달한다.
+즉 다음처럼 문제를 해결할 수 있다.
+![img_1.png](./image/img_28.png)<br/><br/>
+
+## 3.8.2 Predicate 조합
+Predicate 인터페이스는 복잡한 프레디케이트를 만들 수 있도록 negate, and, or 세 가지의 메서드를 제공한다.
+예를 들어 '빨간색이 아닌 사과'처럼 특정 Predicate를 반전시킬 때 negate 메서드를 사용할 수 있다.
+예시를 통해 살펴보자
+![img_1.png](./image/img_29.png)<br/><br/>
+
+## 3.8.3 Function
+마지막으로 Function 인터페이스에서 제공하는 람다 표현식도 조합할 수 있다. Function 인터페이스는 Function 인스턴스를
+반환하는 andThen, compose 두 가지 디폴트 메서드를 제공한다.
+andThen 메서드를 주어진 함수를 먼저 적용한 결과를 다음 함수의 입력으로 전달하는 함수를 반환한다.
+예를 들어 숫자를 1 증가시키는 f라는 함수가 있고, 숫자에 2를 곱하는 g라는 함수가 있다고 가정하자. 이제 다음처럼
+f와 g를 조립해서 숫자를 증가시킨 뒤 결과에 2를 곱하는 함수 h를 만들 수 있다.
+![img_1.png](./image/img_30.png)<br/><br/>
+
+<br/><br/>
+## [3.9 비슷한 수학적 개념](https://github.com/ShinDongHun1/ModernJavaInAction_Code/tree/main/src/chapter3/integrate)
+(적분 나와서 도망치려다 그냥 한다.. 수학 싫으면 건너가도 좋다)
+다음과 같은 함수가 있다.(자바 함수 말고 수학의 함수)<br/>
+f(x) = x + 10<br/>
+이를 적분하는 코드를 작성해보자(예시를 위해 x=3~ x=7까지 범위를 적분하는 코드를 작성하겠다)<br/>
+우선은 함수 f와 한계값(3과 7)을 인수로 받는 integrate라는 함수를 만들어야 한다.
+즉 다음처럼 함수 f를 인수로 받는 함수를 자바로 구현할 수 있다.<br/>
+![img_1.png](./image/img_31.png)<br/><br/>
+그러나 다음처럼 간단히 구현할 수는 없다.<br/>
+![img_1.png](./image/img_32.png)<br/><br/>
+우선 이 식에서 x의 범위가 불분명하며, f를 전달하는 것이 아니라 x+10이라는 값을 전달하게 되기 때문에 잘못된 식이다.
+수학에서 dx의 정체는 'x를 인수로 받아 x+10의 결과를 만드는 함수'로 정리할 수 있다.<br/><br/>
+
+## 3.9.2 자바 8 람다로 연결
+이전에 언급했듯이 자바 8에서는 (double x) -> x + 10 같은 람다 표현식을 사용할 수 있다.
+따라서 함수 f를 다음처럼 구현할 수 있다.<br/>
+<span style="color:orange">integration((double x) -> x + 10, 3, 7)</span><br/><br/>
+또는 다음처럼 구현할 수 있다<br/>
+<span style="color:orange">integration((double x) -> f(x), 3, 7)</span><br/><br/>
+이제 integrate 메서드를 어떻게 구현할지 궁금할 것이다.
+![img_1.png](./image/img_33.png)<br/><br/>
+위는 틀린 코드이다. 람다 표현식은 함수형 인터페이스를 기대하는 콘텍스트에서만 사용할 수 있으므로 다음처럼 구현해야 한다.
+![img_1.png](./image/img_34.png)<br/><br/>
+
+<br/><br/>
+## 3.10 마치며
+- 람다 표현식은 익명 함수의 일종이다.
+- 람다 표현식으로 간결한 코드를 구현할 수 있다.
+- **함수형 인터페이스**는 하나의 추상 메서드만을 정의하는 인터페이스이다.
+- 함수형 인터페이스는 하나의 추상 메서드만을 정의하는 인터페이스다.
+- 함수형 인터페이스를 기대하는 곳에서만 람다 표현식을 사용할 수 있다.
+- 람다 표현식을 이용해서 함수형 인터페이스의 추상 메서드를 즉석으로 제공할 수 있으며, **람다 표현식 전체가 함수형 인터페이스의 인스턴스로 취급된다.**
+- java.util.function 패키지는 Predicate\<T>, Function\<T,R> 등을 포함해서 자주 사용하는 다양한 함수형 인터페이스를 제공한다. (자세히 알고싶다면 [이곳을 클릭](https://ttl-blog.tistory.com/207))
+- 자바 8은 Predicate\<T> 등과 같은 제네릭 함수형 인터페이스와 관련한 박싱 동작을 피할 수 있는 IntPredicate 같은 기본형 특화 인터페이스도 제공한다.
+- 실행 어라운드 패턴 (예를 들면 자원 할당, 자원 정리 등 코드 중간에 실행해야 하는 메서드에 꼭 필요한 코드)을 람다를 활용하면 유연성과 재사용성을 추가로 얻을 수 있다.
+- 람다 표현식의 기대 형식을 대상 형식이라고 한다.
+- 메서드 참조를 이용하면 기존의 메서드 구현을 재사용하고 직접 전달할 수 있다.
+- Comparator, Predicate, Function 같은 함수형 인터페이스는 람다 표현식을 조합할 수 있는 다양한 디폴트 메서드를 제공한다.
